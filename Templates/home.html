@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <title>Rooms</title>
-  </head>
-  <body>
-      <div class="container">
-        <ol class="breadcrumb my-4">
-          <li class="breadcrumb-item active">Boards</li>
-        </ol>
-        <table class="table">
-          <thead class="thead-inverse">
-            <tr>
-              <th>Room</th>
-              <th>Posts</th>
-              <th>Topics</th>
-              <th>Last Post</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for room in rooms %}
-              <tr>
-                <td>
-                  {{ room.name }}
-                  <small class="text-muted d-block">{{ room.description }}</small>
-                </td>
-                <td class="align-middle">0</td>
-                <td class="align-middle">0</td>
-                <td></td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Rooms</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Rooms</th>
+        <th>Posts</th>
+        <th>Topics</th>
+        <th>Last Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+        <tr>
+          <td>
+            <a href="{% url 'room_topics' room.pk %}">{{ room.name }}</a>
+            <small class="text-muted d-block">{{ room.description }}</small>
+          </td>
+          <td class="align-middle">0</td>
+          <td class="align-middle">0</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

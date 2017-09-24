@@ -19,5 +19,7 @@ from rooms import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^rooms/(?P<pk>\d+)/$', views.room_topics, name='room_topics'),
+    url(r'^rooms/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^admin/', admin.site.urls),
 ]
